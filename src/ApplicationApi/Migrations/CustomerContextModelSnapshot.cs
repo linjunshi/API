@@ -27,8 +27,7 @@ namespace ApplicationApi.Migrations
                     b.Property<string>("contact")
                         .IsRequired();
 
-                    b.Property<byte[]>("cv")
-                        .IsRequired();
+                    b.Property<byte[]>("cv");
 
                     b.Property<string>("email")
                         .IsRequired();

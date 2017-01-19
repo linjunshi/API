@@ -8,12 +8,16 @@ namespace ApplicationApi.Models
     public class CustomerViewModel
     {
         [Required(ErrorMessage = "Please enter your name!")]
+        [MaxLength(100, ErrorMessage = "Invalid Name: maximum length is 256 characters")]
         public string name { get; set; }
 
         [Required(ErrorMessage = "Please enter an email!")]
-        public string email { get; set; } 
+        [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+            ErrorMessage = "Email invalid")]
+        public string email { get; set; }
 
         [Required(ErrorMessage = "Please enter a contact number!")]
+        [RegularExpression(@"^\D*0(\s*\d){9}$", ErrorMessage = "contact number is invalid")]
         public string contact { get; set; }
 
         public string experienceTitle { get; set; }
@@ -27,8 +31,8 @@ namespace ApplicationApi.Models
         [MaxLength(500, ErrorMessage="Maximum length is 500 characters!")]
         public string comment { get; set; }
 
-        //[Required(ErrorMessage = "Please upload your resume!")]
-        //public IFormFile cv { get; set; }
+        [Required(ErrorMessage = "Please upload your resume!")]
+        public IFormFile cv { get; set; }
 
     }
 }

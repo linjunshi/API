@@ -33,7 +33,7 @@ namespace ApplicationApi.Models
         public string comment { get; set; }
 
         //[Required]
-        //public byte[] cv { get; set; }
+        public byte[] cv { get; set; }
 
     }
 }

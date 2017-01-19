@@ -29,14 +29,15 @@ namespace ApplicationApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult register ([FromBody]CustomerViewModel custView)
+        public IActionResult register (CustomerViewModel custView)
         {
             if (ModelState.IsValid)
             {
+
                 repo.create_customer(custView);
                 return Ok(custView);
             }
-            return Redirect("/");
+            return BadRequest(ModelState);
         }
 
         // PUT api/values/5

@@ -1,5 +1,5 @@
---temp-output:c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\obj\Debug\netcoreapp1.0\
---out:c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\bin\Debug\netcoreapp1.0\ApplicationApi.dll
+--temp-output:C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\obj\Debug\netcoreapp1.0\
+--out:C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\bin\Debug\netcoreapp1.0\ApplicationApi.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -209,16 +209,18 @@
 --reference:C:\Users\edward.lin\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\edward.lin\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:C:\Users\edward.lin\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
---resource:"c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\obj\Debug\netcoreapp1.0\ApplicationApidotnet-compile.deps.json",ApplicationApi.deps.json
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Program.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Startup.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\ApplyController.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\HomeController.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119035532_first.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119035532_first.Designer.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\CustomerContextModelSnapshot.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\Customer.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\CustomerContext.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\CustomerViewModel.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Repositories\CustomersRepo.cs
-c:\users\edward.lin\documents\visual studio 2015\Projects\ApplicationApi\src\ApplicationApi\Repositories\ICustomersRepo.cs
+--resource:"C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\obj\Debug\netcoreapp1.0\ApplicationApidotnet-compile.deps.json",ApplicationApi.deps.json
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Program.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Startup.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\ApplyController.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\HomeController.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119035532_first.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119035532_first.Designer.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119224534_save-files.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170119224534_save-files.Designer.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\CustomerContextModelSnapshot.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\Customer.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\CustomerContext.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\CustomerViewModel.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Repositories\CustomersRepo.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Repositories\ICustomersRepo.cs

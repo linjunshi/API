@@ -32,8 +32,8 @@ namespace ApplicationApi.Repositories
                 experienceDate = custView.experienceDate,
                 experienceInRole = custView.experienceInRole,
                 experienceTitle = custView.experienceTitle,
-                comment = custView.comment
-                //cv = ReadToEnd( custView.cv )
+                comment = custView.comment,
+                cv = ReadToEnd(custView.cv)
             };
             db.Customers.Add(c);
             db.SaveChanges();

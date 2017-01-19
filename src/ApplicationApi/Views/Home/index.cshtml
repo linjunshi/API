@@ -1,0 +1,22 @@
+﻿@model ApplicationApi.Models.CustomerViewModel
+
+<html>
+<head>
+    <title>Post</title>
+</head>
+<body>
+    <div asp-validation-summary="ModelOnly"></div>
+    <form asp-controller="Apply" asp-action="register" method="post" enctype="multipart/form-data">
+        <label>name</label> <input type="text" name="name" value="haha lin"><br />
+        <label>email</label> <input type="text" name="email" value="haha@lin.com"><br />
+        <label>contact</label> <input type="text" name="contact" value="8888888"><br />
+        <label>experienceTitle</label> <input type="text" name="experienceTitle" value="hahahahahah"><br />
+        <label>experienceCompany</label> <input type="text" name="experienceCompany" value="holler"><br />
+        <label>experienceDate</label> <input type="text" name="experienceDate" value="2000-01-01"><br />
+        <label>experienceInRole</label> <input type="checkbox" name="experienceInRole"><br />
+        <label>comments</label> <textarea name="comments"></textarea><br />
+        <label>cv</label> <input type="file" name="cv"><br />
+        <input type="submit" name="apply" />
+    </form>
+</body>
+</html>

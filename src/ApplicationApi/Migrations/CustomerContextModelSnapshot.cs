@@ -18,8 +18,10 @@ namespace ApplicationApi.Migrations
 
             modelBuilder.Entity("ApplicationApi.Models.Customer", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<string>("email")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("PostTime");
 
                     b.Property<string>("comment")
                         .HasMaxLength(500);
@@ -27,23 +29,18 @@ namespace ApplicationApi.Migrations
                     b.Property<string>("contact")
                         .IsRequired();
 
-                    b.Property<byte[]>("cv");
-
-                    b.Property<string>("email")
-                        .IsRequired();
-
                     b.Property<string>("experienceCompany");
 
                     b.Property<DateTime>("experienceDate");
 
-                    b.Property<string>("experienceInRole");
+                    b.Property<bool>("experienceInRole");
 
                     b.Property<string>("experienceTitle");
 
                     b.Property<string>("name")
                         .IsRequired();
 
-                    b.HasKey("id");
+                    b.HasKey("email");
 
                     b.ToTable("Customers");
                 });

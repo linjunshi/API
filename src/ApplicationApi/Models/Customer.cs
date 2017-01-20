@@ -9,14 +9,13 @@ namespace ApplicationApi.Models
 {
     public class Customer
     {
+
         [Key]
-        public int id { get; set; }
+        [Required]
+        public string email { get; set; }
 
         [Required]
         public string name { get; set; }
-
-        [Required]
-        public string email { get; set; }
 
         [Required]
         public string contact { get; set; }
@@ -27,13 +26,17 @@ namespace ApplicationApi.Models
 
         public DateTime experienceDate { get; set; }
 
-        public string experienceInRole { get; set; }
+        public bool experienceInRole { get; set; }
 
         [MaxLength(500)]
         public string comment { get; set; }
 
         //[Required]
-        public byte[] cv { get; set; }
+        //public byte[] cv { get; set; }
+
+        //public string IPAddress { get; set; }
+
+        public DateTime PostTime { get; set; }
 
     }
 }

@@ -5,50 +5,77 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationApi.Models;
 using ApplicationApi.Repositories;
-using Microsoft.AspNetCore.Http;
 
 namespace ApplicationApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class ApplyController : Controller
     {
-        ICustomersRepo repo = new CustomersRepo();
+        ICustomersRepo _repo = new CustomersRepo();
         // GET api/values
         [HttpGet]
         public ICollection<Customer> Get()
         {
-            return repo.get_all_customers();
+            return _repo.get_all_customers();
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public Customer Get(int id)
+        [HttpGet("{email}")]
+        public Customer Get(string email)
         {
-            return repo.get_customer(id);
+            return _repo.get_customer(email);
+        }
+
+        // helper method
+        private bool customer_exists(string email)
+        {
+            return _repo.get_customer(email) != null;
         }
 
         // POST api/values
         [HttpPost]
-        public IActionResult register (CustomerViewModel custView)
+        public async Task<IActionResult> register(CustomerViewModel custView)
         {
+            custView.contact.Replace(" ", "");
             if (ModelState.IsValid)
             {
 
-                repo.create_customer(custView);
+                custView.PostTime = DateTime.Now;
+                if (customer_exists(custView.email))
+                {
+                    return await this.update_user(custView);
+                }
+                else
+                {
+                    _repo.create_customer(custView);
+                }
                 return Ok(custView);
             }
             return BadRequest(ModelState);
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut("{CustomerViewModel}")]
+        public async Task<IActionResult> update_user(CustomerViewModel custView)
         {
+            // TO-DO
+            if (ModelState.IsValid)
+            {
+                Customer c = _repo.get_customer(custView.email);
+                // if the request is less than 60s
+                if (c.PostTime.AddSeconds(10) > DateTime.Now)
+                {
+                    return BadRequest($"Please try submit the form later!");
+                }
+                await _repo.update_customer(custView);
+                return Ok(custView);
+            }
+            return BadRequest(ModelState);
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{email}")]
+        public void Delete(string email)
         {
         }
     }

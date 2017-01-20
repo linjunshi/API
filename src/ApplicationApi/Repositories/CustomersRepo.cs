@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ApplicationApi.Models;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
 namespace ApplicationApi.Repositories
 {
@@ -21,35 +22,15 @@ namespace ApplicationApi.Repositories
             }
         }
 
-        public Customer create_customer(CustomerViewModel custView)
+        public bool delete_customer(string email)
         {
-            Customer c = new Customer
-            {
-                name = custView.name,
-                email = custView.email,
-                contact = custView.contact,
-                experienceCompany = custView.experienceCompany,
-                experienceDate = custView.experienceDate,
-                experienceInRole = custView.experienceInRole,
-                experienceTitle = custView.experienceTitle,
-                comment = custView.comment,
-                cv = ReadToEnd(custView.cv)
-            };
-            db.Customers.Add(c);
-            db.SaveChanges();
-            return c;
-        }
-
-        public bool delete_customer(int key)
-        {
-
-            Customer cust = db.Customers.FirstOrDefault(c => c.id == key);
+            Customer cust = db.Customers.FirstOrDefault(c => c.email == email);
             if (cust != null)
             {
                 db.Remove(cust);
                 db.SaveChanges();
             }
-            return (db.Customers.FirstOrDefault(c => c.id == key) == null);
+            return (db.Customers.FirstOrDefault(c => c.email == email) == null);
         }
 
         public ICollection<Customer> get_all_customers()
@@ -57,22 +38,57 @@ namespace ApplicationApi.Repositories
             return db.Customers.ToList();
         }
 
-        public Customer get_customer(int key)
+        public Customer get_customer(string email)
         {
-            return db.Customers.FirstOrDefault(c => c.id == key);
+            return db.Customers.FirstOrDefault(c => c.email == email);
         }
 
-        public Customer update_customer(Customer c)
+        public Customer create_customer(CustomerViewModel custView)
         {
-            Customer original = db.Customers.FirstOrDefault(i => i.id == c.id);
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CustomerViewModel, Customer>();
+                //cfg.CreateMap<IFormFile, byte[]>().ConstructUsing(ReadToEnd);
+            });
+            Customer c = Mapper.Map<Customer>(custView);
+            db.Customers.Add(c);
+            db.SaveChanges();
+            return c;
+        }
+
+        public async Task<Customer> update_customer(CustomerViewModel custView)
+        {
+            Customer original = db.Customers.FirstOrDefault(i => i.email == custView.email);
             if (original == null)
                 return null;
-            original.name = c.name;
-            original.email = c.email;
-            original.contact = c.contact;
-            // to-do
+
+            // updating
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<CustomerViewModel, Customer>();
+            });
+            Mapper.Map(custView, original);
             db.SaveChanges();
+            // save files
+            await save_user_file(custView);
             return original;
+        }
+
+        private async Task<bool> save_user_file(CustomerViewModel custView)
+        {
+            try
+            {
+                Directory.Delete($"CustumerFiles/{custView.email}", true);
+            }
+            catch { }
+            Directory.CreateDirectory($"CustumerFiles/{custView.email}");
+            using (var f = new FileStream($"CustumerFiles/{custView.email}/{custView.cv.FileName}", FileMode.Create))
+            {
+                await custView.cv.CopyToAsync(f);
+            }
+            return true;
         }
     }
 }
+
+// C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\CustumerFiles

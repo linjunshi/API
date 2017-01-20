@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,18 +10,17 @@ namespace ApplicationApi.Models
 {
     public class Customer
     {
-
-        [Key]
         [Required]
         public string email { get; set; }
+
+        [Required]
+        public string experienceTitle { get; set; }
 
         [Required]
         public string name { get; set; }
 
         [Required]
         public string contact { get; set; }
-
-        public string experienceTitle { get; set; }
 
         public string experienceCompany { get; set; }
 

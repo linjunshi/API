@@ -9,10 +9,10 @@ namespace ApplicationApi.Repositories
 {
     interface ICustomersRepo
     {
-        Customer create_customer (CustomerViewModel c);
+        Task<Customer> create_customer (CustomerViewModel custView);
+        Task<Customer> update_customer(CustomerViewModel custView);
         bool delete_customer (string email);
         ICollection<Customer> get_all_customers();
-        Customer get_customer (string email);
-        Task<Customer> update_customer(CustomerViewModel custView);
+        Customer get_customer (CustomerViewModel custView);
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ApplicationApi.Models;
 using ApplicationApi.Repositories;
+using System.Text.RegularExpressions;
 
 namespace ApplicationApi.Controllers
 {
@@ -20,34 +21,30 @@ namespace ApplicationApi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{email}")]
-        public Customer Get(string email)
-        {
-            return _repo.get_customer(email);
-        }
+        //[HttpGet("{email}")]
+        //public Customer Get(string email)
+        //{
+        //    return _repo.get_customer(email);
+        //}
 
         // helper method
-        private bool customer_exists(string email)
+        private bool customer_role_exists(CustomerViewModel custView)
         {
-            return _repo.get_customer(email) != null;
+            return _repo.get_customer(custView) != null;
         }
 
         // POST api/values
         [HttpPost]
         public async Task<IActionResult> register(CustomerViewModel custView)
         {
-            custView.contact.Replace(" ", "");
+            custView.contact = Regex.Replace(custView.contact, @"\s+", "");
             if (ModelState.IsValid)
             {
-
                 custView.PostTime = DateTime.Now;
-                if (customer_exists(custView.email))
-                {
+                if (customer_role_exists(custView)) {
                     return await this.update_user(custView);
-                }
-                else
-                {
-                    _repo.create_customer(custView);
+                } else {
+                    await _repo.create_customer(custView);
                 }
                 return Ok(custView);
             }
@@ -61,10 +58,9 @@ namespace ApplicationApi.Controllers
             // TO-DO
             if (ModelState.IsValid)
             {
-                Customer c = _repo.get_customer(custView.email);
+                Customer c = _repo.get_customer(custView);
                 // if the request is less than 60s
-                if (c.PostTime.AddSeconds(10) > DateTime.Now)
-                {
+                if (c.PostTime.AddSeconds(10) > DateTime.Now) {
                     return BadRequest($"Please try submit the form later!");
                 }
                 await _repo.update_customer(custView);

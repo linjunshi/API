@@ -2,16 +2,19 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApplicationApi.Models
 {
     public class CustomerViewModel
     {
-        [Key]
         [Required(ErrorMessage = "Please enter an email!")]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
             ErrorMessage = "Email invalid")]
         public string email { get; set; }
+        
+        [Required(ErrorMessage = "Please enter a Title name!")]
+        public string experienceTitle { get; set; }
 
         [Required(ErrorMessage = "Please enter your name!")]
         [MaxLength(100, ErrorMessage = "Invalid Name: maximum length is 256 characters")]
@@ -21,12 +24,13 @@ namespace ApplicationApi.Models
         [RegularExpression(@"^\D*0(\s*\d){9}$", ErrorMessage = "contact number is invalid")]
         public string contact { get; set; }
 
-        public string experienceTitle { get; set; }
-
+        [Required(ErrorMessage = "Please enter a Company name!")]
         public string experienceCompany { get; set; }
 
+        [Required(ErrorMessage = "Please enter a contact number!")]
         public DateTime experienceDate { get; set; }
 
+        [Required(ErrorMessage = "Please enter a Role!")]
         public bool experienceInRole { get; set; }
 
         [MaxLength(500, ErrorMessage="Maximum length is 500 characters!")]

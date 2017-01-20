@@ -38,12 +38,14 @@ namespace ApplicationApi.Repositories
             return db.Customers.ToList();
         }
 
-        public Customer get_customer(string email)
+        public Customer get_customer(CustomerViewModel custView)
         {
-            return db.Customers.FirstOrDefault(c => c.email == email);
+            return db.Customers.FirstOrDefault(c => 
+                (c.email == custView.email && c.experienceTitle == custView.experienceTitle)
+            );
         }
 
-        public Customer create_customer(CustomerViewModel custView)
+        public async Task<Customer> create_customer(CustomerViewModel custView)
         {
             Mapper.Initialize(cfg =>
             {
@@ -53,12 +55,13 @@ namespace ApplicationApi.Repositories
             Customer c = Mapper.Map<Customer>(custView);
             db.Customers.Add(c);
             db.SaveChanges();
+            await save_user_file(custView);
             return c;
         }
 
         public async Task<Customer> update_customer(CustomerViewModel custView)
         {
-            Customer original = db.Customers.FirstOrDefault(i => i.email == custView.email);
+            Customer original = db.Customers.FirstOrDefault(i => i.email == custView.email && i.experienceTitle == custView.experienceTitle);
             if (original == null)
                 return null;
 
@@ -68,7 +71,12 @@ namespace ApplicationApi.Repositories
                 cfg.CreateMap<CustomerViewModel, Customer>();
             });
             Mapper.Map(custView, original);
-            db.SaveChanges();
+            try {
+                db.SaveChanges();
+            } catch (Exception e)
+            {
+
+            }
             // save files
             await save_user_file(custView);
             return original;
@@ -76,13 +84,12 @@ namespace ApplicationApi.Repositories
 
         private async Task<bool> save_user_file(CustomerViewModel custView)
         {
-            try
-            {
-                Directory.Delete($"CustumerFiles/{custView.email}", true);
+            try {
+                Directory.Delete($"CustumerFiles/{custView.email}_{custView.experienceTitle}", true);
             }
             catch { }
-            Directory.CreateDirectory($"CustumerFiles/{custView.email}");
-            using (var f = new FileStream($"CustumerFiles/{custView.email}/{custView.cv.FileName}", FileMode.Create))
+            Directory.CreateDirectory($"CustumerFiles/{custView.email}_{custView.experienceTitle}");
+            using (var f = new FileStream($"CustumerFiles/{custView.email}_{custView.experienceTitle}/{custView.cv.FileName}", FileMode.Create))
             {
                 await custView.cv.CopyToAsync(f);
             }

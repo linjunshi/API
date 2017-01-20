@@ -216,10 +216,8 @@ C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\App
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Startup.cs
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\ApplyController.cs
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Controllers\HomeController.cs
-C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120024402_add-post-time-check.cs
-C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120024402_add-post-time-check.Designer.cs
-C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120024926_change-experience-in-role-type.cs
-C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120024926_change-experience-in-role-type.Designer.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120054347_role-email-as-key.cs
+C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\20170120054347_role-email-as-key.Designer.cs
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Migrations\CustomerContextModelSnapshot.cs
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\Customer.cs
 C:\Users\edward.lin\Documents\Visual Studio 2015\Projects\ApplicationApi\src\ApplicationApi\Models\CustomerContext.cs

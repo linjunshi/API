@@ -18,8 +18,9 @@ namespace ApplicationApi.Migrations
 
             modelBuilder.Entity("ApplicationApi.Models.Customer", b =>
                 {
-                    b.Property<string>("email")
-                        .ValueGeneratedOnAdd();
+                    b.Property<string>("email");
+
+                    b.Property<string>("experienceTitle");
 
                     b.Property<DateTime>("PostTime");
 
@@ -35,12 +36,10 @@ namespace ApplicationApi.Migrations
 
                     b.Property<bool>("experienceInRole");
 
-                    b.Property<string>("experienceTitle");
-
                     b.Property<string>("name")
                         .IsRequired();
 
-                    b.HasKey("email");
+                    b.HasKey("email", "experienceTitle");
 
                     b.ToTable("Customers");
                 });

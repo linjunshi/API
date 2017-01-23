@@ -11,7 +11,7 @@ namespace ApplicationApi.Repositories
 {
     public class CustomersRepo : ICustomersRepo
     {
-        private CustomerContext db = new CustomerContext();
+        private CustomerContext _db = new CustomerContext();
 
         private byte[] ReadToEnd(IFormFile file)
         {
@@ -24,23 +24,23 @@ namespace ApplicationApi.Repositories
 
         public bool delete_customer(string email)
         {
-            Customer cust = db.Customers.FirstOrDefault(c => c.email == email);
+            Customer cust = _db.Customers.FirstOrDefault(c => c.email == email);
             if (cust != null)
             {
-                db.Remove(cust);
-                db.SaveChanges();
+                _db.Remove(cust);
+                _db.SaveChanges();
             }
-            return (db.Customers.FirstOrDefault(c => c.email == email) == null);
+            return (_db.Customers.FirstOrDefault(c => c.email == email) == null);
         }
 
         public ICollection<Customer> get_all_customers()
         {
-            return db.Customers.ToList();
+            return _db.Customers.ToList();
         }
 
         public Customer get_customer(CustomerViewModel custView)
         {
-            return db.Customers.FirstOrDefault(c => 
+            return _db.Customers.FirstOrDefault(c => 
                 (c.email == custView.email && c.experienceTitle == custView.experienceTitle)
             );
         }
@@ -53,15 +53,15 @@ namespace ApplicationApi.Repositories
                 //cfg.CreateMap<IFormFile, byte[]>().ConstructUsing(ReadToEnd);
             });
             Customer c = Mapper.Map<Customer>(custView);
-            db.Customers.Add(c);
-            db.SaveChanges();
+            _db.Customers.Add(c);
+            _db.SaveChanges();
             await save_user_file(custView);
             return c;
         }
 
         public async Task<Customer> update_customer(CustomerViewModel custView)
         {
-            Customer original = db.Customers.FirstOrDefault(i => i.email == custView.email && i.experienceTitle == custView.experienceTitle);
+            Customer original = _db.Customers.FirstOrDefault(i => i.email == custView.email && i.experienceTitle == custView.experienceTitle);
             if (original == null)
                 return null;
 
@@ -72,7 +72,7 @@ namespace ApplicationApi.Repositories
             });
             Mapper.Map(custView, original);
             try {
-                db.SaveChanges();
+                _db.SaveChanges();
             } catch (Exception e)
             {
 

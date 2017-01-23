@@ -12,7 +12,8 @@ namespace ApplicationApi.Controllers
     [Route("api/[controller]/[action]")]
     public class ApplyController : Controller
     {
-        ICustomersRepo _repo = new CustomersRepo();
+        ICustomersRepo _repo = new CustomersRepo(new CustomerContext());
+
         // GET api/values
         [HttpGet]
         public ICollection<Customer> Get()

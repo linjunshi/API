@@ -11,7 +11,12 @@ namespace ApplicationApi.Repositories
 {
     public class CustomersRepo : ICustomersRepo
     {
-        private CustomerContext _db = new CustomerContext();
+        private CustomerContext _db;
+
+        public CustomersRepo (CustomerContext db)
+        {
+            _db = db;
+        }
 
         private byte[] ReadToEnd(IFormFile file)
         {
@@ -86,8 +91,8 @@ namespace ApplicationApi.Repositories
         {
             try {
                 Directory.Delete($"CustumerFiles/{custView.email}_{custView.experienceTitle}", true);
-            }
-            catch { }
+            } catch { }
+
             Directory.CreateDirectory($"CustumerFiles/{custView.email}_{custView.experienceTitle}");
             using (var f = new FileStream($"CustumerFiles/{custView.email}_{custView.experienceTitle}/{custView.cv.FileName}", FileMode.Create))
             {
